@@ -7,47 +7,70 @@ public class TwistGenerator { //main method
     public static void main(String[]args) {
         
         Scanner myScanner = new Scanner(System.in); //initialize scanner
-        System.out.print("Enter the length of the twist:"); //prompt user for length
+        int length = 0; //initialize length
+        boolean acceptable = false; //determine if length is acceptable
         
-        int length = myScanner.nextInt(); //initialize length
-        int counter1 = 0; //initialize counter 1
-        int counter2 = 0; //initialize counter 2
-        int counter3 = 0; //initialize counter 3
-        
-        String line1 = "\\ /";
-        String line2 = " x ";
-        String line3 = "/ \\";
-        
-            while (counter1 < length) {
-                System.out.print(line1);
-                counter1 = counter1++;
-                
-                    if (counter1 == length) {
-                        System.out.print(line1+"\n");
-                        break;
+        while (!acceptable) { //while not acceptable
+            System.out.print("Enter the length of the twist:"); //prompt user for length
+            if (myScanner.hasNextInt()) { //check if an int
+                length = myScanner.nextInt(); //set length as the int
+                if (length > 0) { //length must be greater than 0
+                    acceptable = true; //acceptable
+                }
+                else {
+                    System.out.println("Error: Must be greater than 0");
                 }
             }
-            
-            while (counter2 < length) {
-                System.out.print(line2);
-                counter2 = counter2++;
-                
-                    if (counter2 == length) {
-                        System.out.print(line2+"\n");
-                        break;
-                    }
+            else {
+                System.out.println("Error: Must be an integer");
+                myScanner.next(); //set as next value
+            }
+        }
+        
+        for (int line1 = 0; line1 < length; line1++) { //loop line1 until it reaches length
+            if (line1%3 == 0) { //first part of pattern
+                System.out.print("\\");
+            }
+            if (line1%3 == 1) { //second part of pattern
+                System.out.print(" ");
+            }
+            if (line1%3 == 2) { //third part of pattern
+                System.out.print("/");
             }
             
-            
-            while (counter3 < length) {
-                System.out.print(line3);
-                counter3 = counter3++;
-                
-                    if (counter3 == length) {
-                        System.out.print(line3);
-                        break;
-                    }
+        }
+        
+        System.out.println(""); //print new line
+        
+        for (int line2 = 0; line2 < length; line2++) { //loop until line2 reaches length
+            if (line2%3 == 0) { //first part of pattern
+                System.out.print(" ");
+            }
+            if (line2%3 == 1) { //second part of pattern
+                System.out.print("x");
+            }
+            if (line2%3 == 2) { //third part of pattern
+                System.out.print(" ");
             }
             
+        }
+        
+        System.out.println(""); //print new line
+        
+        for (int line3 = 0; line3 < length; line3++) { //loop until line3 reaches length
+            if (line3%3 == 0) { //first part of pattern
+                System.out.print("/");
+            }
+            if (line3%3 == 1) { //second part of pattern
+                System.out.print(" ");
+            }
+            if (line3%3 == 2) { //third part of pattern
+                System.out.print("\\");
+            }
+            
+        }
+        
+        System.out.println(""); //print new line
+          
     }
 }
