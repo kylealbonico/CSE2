@@ -40,7 +40,4 @@ public class Rectangularize { //create class rectangularize
             }
     }
     
-    
-        
-
 }

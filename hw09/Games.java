@@ -8,11 +8,11 @@ public class Games {
     
         Scanner myScanner = new Scanner(System.in); //initialize scanner
         System.out.println("Welcome to Kyle's game center");
-        System.out.println("Pick a game:");
+        System.out.println("Pick a game (guessTheBox, spinTheWheel, or scrambler): ");
         String gameSelection = myScanner.next(); //game selection
         
         if (gameSelection.equals("guessTheBox")) { //pick guess the box
-        int guess = 0;
+        int guess = 0; //initialize guess
         boolean acceptableGuess = false;
         while (!acceptableGuess) { //while input isn't acceptable
             System.out.print("Guess the Box: Choose 1, 2 or 3. Inside one of the boxes is a prize: "); //input the length
@@ -78,11 +78,16 @@ public class Games {
                         myScanner.next(); //set as next value
                     }
             }
-                spinTheWheel(myScanner.nextInt); //run spin the wheel
-            }
+                spinTheWheel(spinNumber, spinColorString); //run spin the wheel
+        }
             
             else if (gameSelection.equals("scrambler")) { //pick scrambler
-                scrambler(myScanner.nextInt()); //run scrambler
+                System.out.println("Enter a string");
+                scrambler(myScanner.next()); //run scrambler
+            }
+            
+            else {
+                System.out.println("Error: Game not found.");
             }
         
         }   
@@ -100,17 +105,11 @@ public class Games {
             System.out.println("Sorry, you did not choose the correct box.");
         }
     }
-        
     
-        
-        
-        
-        
-        
-    public static void spinTheWheel(int spinNumber, String spinColor) { //method spin the wheel
-    
-       
-        
+    public static void spinTheWheel(int spinNumber, String spinColorString) { //method spin the wheel
+        int spinColor = 0; //initialize spinColor
+        int spinColorActual = 0; //initialize actual spin color
+        int spinNumberActual = 0; //initialize actual spin number
         if (spinColorString.equals("black") || spinColorString.equals("Black")) { //account for caps
             spinColor = 1; //spinColor for black
         }
@@ -120,7 +119,7 @@ public class Games {
         }
         
         spinColorActual = (int) (Math.random()*2); //random number 1-2
-        spinNumberActual= (int) (Math.random()*5); //random number 1-5
+        spinNumberActual = (int) (Math.random()*5); //random number 1-5
         
         if (spinColorActual == spinColor && spinNumberActual == spinNumber) { //correct guess
             System.out.println("Congratulations! You chose the correct color and number!");
@@ -132,13 +131,13 @@ public class Games {
     
     }
     
-    public static void scrambler(String str) {
-        char [] array = str.toCharArray();
-        for (int i = 0; i < str.length(); i++) {
-            int random = (int) (Math.random()*(str.length - i));
-            System.out.print(array[random]);
-            for (int j = random; j < str.length - i - 1; j++) {
-                array[j] = array[j + 1];
+    public static void scrambler(String str) { //scrmabler method
+        char [] array = str.toCharArray(); //set string to an array of characters
+        for (int i = 0; i < str.length(); i++) { //as integer approaches string length
+            int random = (int) (Math.random()*(str.length() - i)); //random placement of int
+            System.out.print(array[random]); //print random array
+            for (int j = random; j < str.length() - i - 1; j++) { //as j approaches string length
+                array[j] = array[j + 1]; //shift j over 1 spot
             }
         }
         
