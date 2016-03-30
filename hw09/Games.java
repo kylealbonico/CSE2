@@ -35,7 +35,7 @@ public class Games {
         }
         
         else if (gameSelection.equals("spinTheWheel")) { //pick spin the wheel
-        
+            
             boolean acceptableSpinNumber = false; //acceptable input
             boolean acceptableSpinColor = false; //acceptable input
             int spinNumber = 0; //initialize spin num
@@ -46,7 +46,7 @@ public class Games {
                 System.out.print("Spin the Wheel: choose a number from 1 to 5: "); //input the number
                     if (myScanner.hasNextInt()) { //if the value entered is an int
                         spinNumber = myScanner.nextInt(); //set guess as the value that was entered
-                        if (guess >= 1 && guess <= 5) { //bounds for guess
+                        if (spinNumber >= 1 && spinNumber <= 5) { //bounds for guess
                         acceptableSpinNumber = true; //make the acceptable boolean true
                         }
                         else { //all other possibilities
@@ -82,7 +82,7 @@ public class Games {
             }
             
             else if (gameSelection.equals("scrambler")) { //pick scrambler
-                scrambler(myScanner.nextInt); //run scrambler
+                scrambler(myScanner.nextInt()); //run scrambler
             }
         
         }   
@@ -111,7 +111,7 @@ public class Games {
     
        
         
-        if (spinColorString.equals("black") || spinColorString.equals("Black") { //account for caps
+        if (spinColorString.equals("black") || spinColorString.equals("Black")) { //account for caps
             spinColor = 1; //spinColor for black
         }
         
@@ -132,8 +132,16 @@ public class Games {
     
     }
     
-    public static void scrambler()
+    public static void scrambler(String str) {
+        char [] array = str.toCharArray();
+        for (int i = 0; i < str.length(); i++) {
+            int random = (int) (Math.random()*(str.length - i));
+            System.out.print(array[random]);
+            for (int j = random; j < str.length - i - 1; j++) {
+                array[j] = array[j + 1];
+            }
+        }
         
-
+}
 
 }
