@@ -11,4 +11,6 @@ public class RandomSentence {
         
         
     }
+    
+    public static void adjective()
 }
