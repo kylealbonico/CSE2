@@ -140,7 +140,7 @@ public class CSE2Linear {
     }
     
     public static int[] scramble(int[] z) { //scramble methid
-        for (int q = 0; q < 15; q++) { //from 0 to 15
+        for (int q = 0; q < z.length; q++) { //from 0 to 15
             int target = (int) (Math.random()*14); //generate random int from 0 to 14
             int temp = z[q]; //temporarily store
             z[q] = z[target]; //set value as random place in array
