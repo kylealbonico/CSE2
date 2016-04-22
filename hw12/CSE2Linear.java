@@ -22,7 +22,7 @@ public class CSE2Linear {
                         i++; //increment i
                     }
                     else { //not in range
-                        System.out.print("Error: Not in range, must be between 0 and 100: ");
+                        System.out.println("Error: Not in range, must be between 0 and 100: ");
                     }
                 }
             
@@ -33,10 +33,10 @@ public class CSE2Linear {
                         i++; //increment i
                     }
                     else if (finalGrade < 0 || finalGrade > 100) { //not in range
-                        System.out.print("Error: Not in range, must be between 0 and 100: ");
+                        System.out.println("Error: Not in range, must be between 0 and 100: ");
                     }
                     else if (finalGrade < grades[i-1]) { //less than the previous entry
-                        System.out.print("Error: must be greater than the previous entry: ");
+                        System.out.println("Error: must be greater than the previous entry: ");
                     }
                 }
                     
@@ -49,8 +49,9 @@ public class CSE2Linear {
             
         }
         
+        System.out.println("Sorted: ");
         for (int j = 0; j < 15; j++) { //print array
-            System.out.println("Sorted: "+grades[j]);
+            System.out.println(grades[j]);
             
         }
     
@@ -65,10 +66,11 @@ public class CSE2Linear {
             }
             else { //not int
                 System.out.println("Error: not an int: ");
+                myScanner.next(); //return
             }
     }
         
-    search(selection, grades); //run search method
+    binarySearch(selection, grades); //run search binary method
     
     scramble(grades); //run scramble method
     
@@ -86,26 +88,52 @@ public class CSE2Linear {
             }
             else { //not int
                 System.out.println("Error: not an int: ");
+                myScanner.next(); //return
             }
     }
     
-    search(selection, grades); //run search method
+    linearSearch(selection, grades); //run search linear method
     
 }
 
+    public static void binarySearch(int x, int[] y){ //binary search method
+        int low = 0; //lowest value
+        int high = y.length-1; //highest value
+        int counter = 0; //counter
+        boolean check = true; //continues loop
+        while (check) {
+            int mid = (low+high)/2; //middle of list
+            counter++; //increment counter
+            if (high == low) { //if search completed
+                System.out.println(x+" was not found in the list.");
+                check = false; //exit loop
+            }
+            else if (x == y[mid]) { //if found
+                System.out.println(x+" was found in the list with "+counter+" iterations.");
+                check = false; //exit loop
+            }
+            else if (x > y[mid]) { //if above middle
+                low = mid + 1; //set new low
+            }
+            else if (x < y[mid]) { //if below middle
+                high = mid - 1; //set new high
+            }
+            
+        }
+    }
     
-    public static void search(int x, int[] y) { //method search
+    public static void linearSearch(int x, int[] y) { //linear search method
        int k = 0; //intialize k
         boolean foundIt = false; //not found
         while (foundIt == false) { //not found
-            for (k = 0; k < 15; k++) { 
+            for (k = 0; k < y.length; k++) { 
                 if (y[k] == x) { //if the value equals a value in the array
                     System.out.println(x+" was found in the list with "+(k+1)+" iterations.");
-                foundIt = true; //exit loop
+                    foundIt = true; //exit loop
                 }
-                else if (k == 14 && y[k] != x && foundIt == false) { //if not and done searching
+                else if (k == y.length-1 && y[k] != x && foundIt == false) { //if not and done searching
                     System.out.println(x+" was not found in the list.");
-                foundIt=true; //exit loop
+                    foundIt = true; //exit loop1
                 }
             }
         }

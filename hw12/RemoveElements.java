@@ -90,28 +90,30 @@ int index,target;
 			if (list[i] == target) { //if value is the input
 				counter++; //increment counter
 			}
+			
 		}
 		
-		if (counter > 0) {
+		if (counter > 0) { //found
 			System.out.println("Element "+target+" has been found.");
 		}
 		
-		else {
+		else { //not found
 			System.out.println("Element "+target+" has not been found.");
 		}
 		
-		int[] newList = new int[list.length-counter]; //new list with less values
+		int[] newList = new int[(list.length)-counter]; //new list with less values
 		
-		for (int j = 0; j < list.length; j++) { //
-			if (list[j] == target) { //
+		for (int j = 0; j < list.length; j++) { //until loop reaches end of list
+			if (list[j] == target) { //if selected value dont copy it
 			}
-			else {
-				newList[trigger] = list[j];
-				trigger++;
+			
+			else { //if not selected value
+				newList[trigger] = list[j]; //set it to the trigger
+				trigger++; //increment trigger
 			}
 		}
 		
-		return newList;
+		return newList; //return the new list
 	}
 	
 }
